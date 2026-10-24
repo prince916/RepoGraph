@@ -1,0 +1,24 @@
+[project]
+name = "repograph-worker"
+version = "0.0.1"
+description = "Repograph parse worker"
+requires-python = ">=3.11"
+dependencies = [
+    "psycopg[binary]>=3.2",
+    "tree-sitter>=0.25",
+    "tree-sitter-java>=0.23.5",
+    "tree-sitter-javascript>=0.25.0",
+    "tree-sitter-python>=0.25.0",
+    "tree-sitter-typescript>=0.23.2",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit", "tests/integration"]
+pythonpath = ["workers"]
+markers = ["network: needs internet access (clones a public GitHub repo)"]
